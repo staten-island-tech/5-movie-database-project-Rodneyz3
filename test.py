@@ -5,11 +5,11 @@ movies = open("./movies.json", encoding="utf8")
 data = json.load(movies)
 
 
-user=int(input("What year:"))
+
 for i in range(100000000):
     print(data[i]["title"])
-    if data[i]["year"] >= user:
-        print(data[i]["year"])
+    print(data[i]["year"])
+
 
 
 
