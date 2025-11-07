@@ -4,25 +4,12 @@ movies = open("./movies.json", encoding="utf8")
 ## create variable "data" that represents the enitre movie list
 data = json.load(movies)
 
-
-
-for i in range(100000000):
-    print(data[i]["title"])
-    print(data[i]["year"])
-
-movies = [
-    {"title": "Inception", "year": 2010, "genre": "Sci-Fi"},
-    {"title": "The Dark Knight", "year": 2008, "genre": "Action"},
-    {"title": "Interstellar", "year": 2014, "genre": "Sci-Fi"},
-    {"title": "The Lion King", "year": 1994, "genre": "Animation"},
-    {"title": "Avengers: Endgame", "year": 2019, "genre": "Action"}
-]
-for movie in movies:
+for movie in data:
     print(movie["title"])
 
 year = int(input("Enter a year: "))
 
-for movie in movies:
+for movie in data:
     if movie["year"] > year:
         print(movie["title"], movie["year"])
 
@@ -31,44 +18,61 @@ for movie in movies:
 start_year = int(input("Enter the starting year: "))
 end_year = int(input("Enter the ending year: "))
 
-for movie in movies:
+for movie in data:
     if start_year < movie["year"] < end_year:
         print(movie["title"], movie["year"])
 
+years = int(input("Enter the year: "))
 
-
-year = int(input("Enter the year: "))
-
-for movie in movies:
-    if movie["year"] == year:
+for movie in data:
+    if movie["year"] == years:
         print(movie["title"], movie["year"])
-
 
 
 def search_movie(title):
     results = []
-    for movie in movies:
-        if title.lower() in movie["title"].lower():
+    for movie in data:
+        if title in movie["title"]:
             results.append(movie)
     return results
 
-# Example Use:
-name = input("Enter movie title to search: ")
+name = input("Enter movie title: ")
 found = search_movie(name)
 print(found)
 
 
-def search_by_genre(genre):
-    results = []
-    for movie in movies:
-        if movie["genre"].lower() == genre.lower():
-            results.append(movie)
-    return results
 
-# Example Use:
-g = input("Enter a genre: ")
-found = search_by_genre(g)
-print(found)
+def genres(genre):
+    for movie in data:
+        if genre in movie["genres"]:
+           print(movie["title"], movie["genres"])
+
+genres("Action")
+
+#for this function, I made it you don't need to worry about the capitalization when using the function for ex: genres(SCIFI), genres(action)
+def genres(genre):
+    genre = genre.lower()
+    for movie in data:
+        for g in movie["genres"]:
+            if genre == g.lower():
+                print(movie["title"], movie["genres"])
+               
+
+genres("action")
 
 
 
+
+
+
+
+
+
+
+
+
+
+                                     
+
+
+                                     

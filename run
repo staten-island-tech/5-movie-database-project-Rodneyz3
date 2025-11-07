@@ -4,56 +4,12 @@ movies = open("./movies.json", encoding="utf8")
 ## create variable "data" that represents the enitre movie list
 data = json.load(movies)
 
-for movie in data:
-    print(movie["title"])
 
 year = int(input("Enter a year: "))
 
 for movie in data:
+    found=False
     if movie["year"] > year:
-        print(movie["title"], movie["year"])
-
-
-
-start_year = int(input("Enter the starting year: "))
-end_year = int(input("Enter the ending year: "))
-
-for movie in data:
-    if start_year < movie["year"] < end_year:
-        print(movie["title"], movie["year"])
-
-years = int(input("Enter the year: "))
-
-for movie in data:
-    if movie["year"] == years:
-        print(movie["title"], movie["year"])
-
-
-def search_movie(title):
-    results = []
-    for movie in data:
-        if title in movie["title"]:
-            results.append(movie)
-    return results
-
-name = input("Enter movie title: ")
-found = search_movie(name)
-print(found)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                     
-
-
-                                     
+        print(movie["title"], movie["year"])\
+        found=True
+    
